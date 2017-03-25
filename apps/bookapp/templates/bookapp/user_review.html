@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Show User</title>
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'bookapp/css/bootstrap.css' %}">
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            {% for user in users %}
+            <div class="col-md-10">
+               <h5>User Alias: {{user.first_name}}</h5>
+               <h5>Name: {{user.first_name}} {{user.last_name}}</h5>
+               <h5>Email: {{user.email}}</h5>
+               <h5>Total Reviews: {{reviews}}</h5>
+               <hr>
+               <h5><u>Posted Reviews on the following books:</u></h5>
+               <div class="scroll col-md-4" style=" border:1px solid black; height:150px; overflow:scroll">
+                  {% for post in posts %}
+               <ul>
+                  <a href="{% url 'books:books' post.book.id %}">{{post.book.title}}</a>
+               </ul>
+               {% endfor %}
+            </div>
+
+         </div>
+         <div class="col-md-2 push-md-10">
+            <a href="{% url 'books:index' %}">Home</a>
+            <br>
+            <a href="{% url 'books:add_book' %}">Add Book and Review</a>
+            <br>
+            <a href="{% url 'login:logout' %}">Logout</a>
+         </div>
+         {% endfor %}
+
+         </div>
+   </body>
+</html>
+
+<!-- #still working on user page -->

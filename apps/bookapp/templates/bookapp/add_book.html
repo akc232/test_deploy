@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Add Book and Review</title>
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'bookapp/css/bootstrap.css' %}">
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-7">
+                  <h5>User: {{request.session.name}} {{request.session.id}}</h5>
+            </div>
+            <div class="col-md-5">
+               <a href="{% url 'books:index' %}">Home</a>
+               <a href="{% url 'login:logout' %}">Logout</a>
+            </div>
+         </div>
+         <div class="row">
+
+
+            <div class="col-md-10">
+               <h3>Add a New Book, Title, and Review</h3>
+               <form class="" action="{% url 'books:create' %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="user" value="{{request.session.id}}">
+                  <div class="form-inline">
+                     <label for="title">Book Title</label>
+                     <input type="text" name="title" value="">
+                  </div>
+                  <div class="form-group">
+                     <label for="author">Author:</label>
+                     <div class="form-inline">
+                        <label for="author_list">Choose from the List:</label>
+                        <select class="author_list" name="author_list">
+                           <option value="null">Select Author</option>
+                           {% for author in authors %}
+                           <option value="{{author.author}}">{{author.author}}</option>
+                           {% endfor %}
+                        </select>
+                     </div>
+                     <div class="form-inline">
+                        <label for="add_author">Or add an Author:</label>
+                        <input type="text" name="add_author" value="">
+                     </div>
+                     <div class="form-group">
+                        <label for="review">Review:</label>
+                        <textarea name="review" rows="8" cols="50"></textarea>
+                     </div>
+                  </div>
+                  <div class="form-inline">
+                     <label for="rating">Rating:</label>
+                     <select class="rating" name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                     </select>
+                  </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-3 push-md-9">
+               <button type="submit" name="submit">Add Book and Review</button>
+            </div>
+         </div>
+      </div>
+   </form>
+   </body>
+</html>

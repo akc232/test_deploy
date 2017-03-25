@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Success Page</title>
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'loginapp/css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'validate/css/style.css' %}">
+      <style media="screen">
+         .container{
+            padding:30px;
+         }
+         .user{
+            display: inline-block;
+         }
+         .dashboard{
+            display: block;
+         }
+         .logout{
+            padding-top: 20px;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+      <div class="row">
+         <div class=" user col-md-9 push-md-3">
+            <h2>Welcome {{request.session.name}}</h2>
+            <hr>
+            <ul style="color:green">
+               {% for message in messages %}
+               {{message}}
+               {% endfor %}
+            </ul>
+            <h3><u>User: Info</u></h3>
+            <h5>{{request.session.id}}</h5>
+            <h5>Name: {{request.session.name}} {{request.session.last}}</h5>
+            <h5>Email: {{request.session.email}}</h5>
+            <hr>
+         </div>
+         <!-- <div class="row">
+            <div class="dashboard col-md-9 push-md-3">
+               <h3>User Dashboard:</h3>
+               <hr>
+               <h4>Go to:</h4>
+               <a href="{% url 'course:user_courses' %}">Register for Courses</a>
+               <br>
+               <br>
+               <a href="{% url 'course:index' %}">Make a Mock Schedule</a>
+            </div>
+         </div> -->
+         <div class="logout col-md-9 push-md-3">
+            <form class="form" action="/logout" method="post">
+               {% csrf_token %}
+               <button type="submit" class="btn btn-default"> Log Out/ Return</button>
+            </form>
+         </div>
+   </div>
+   </div>
+   </body>
+</html>

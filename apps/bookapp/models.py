@@ -85,3 +85,8 @@ class Review (CounterMixin, models.Model):
     objects = ReviewManager()
     def __unicode__(self):
          return "Review:"+self.review+" Review_User_ID:"+unicode(self.user)+" Book: "+unicode(self.book)+" Rating: "+unicode(self.rating)
+
+
+
+
+#THIS IS THE TEST FOR DEPLYMENT DONT USE FOR ANYTHING ELSE!!!!

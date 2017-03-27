@@ -9,12 +9,10 @@ django-model-changes==0.15
 django-model-utils==2.6.1
 django-star-ratings==0.5.4
 Flask==0.12
-graphviz==0.6
 itsdangerous==0.24
 Jinja2==2.9.5
 MarkupSafe==0.23
 pycparser==2.17
-pydotplus==2.0.2
 pyparsing==2.2.0
 six==1.10.0
 virtualenv==15.1.0
